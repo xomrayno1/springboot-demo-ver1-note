@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -39,7 +40,20 @@ public class CourseController {
 						HttpStatus.OK.value()),
 				HttpStatus.OK);
 	}
-
+	@GetMapping("/search")
+	public ResponseEntity<APIResponse> getSearchByName(
+			@RequestParam(value = "search",required = false, defaultValue = "")String name){
+		//System.out.println(name);
+		List<Course> course = courseService.searchByName(name);
+		if(course.isEmpty()) {
+			return new ResponseEntity<APIResponse>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<APIResponse>(
+				new APIResponse<List<Course>>(course, 
+						HttpStatus.OK.getReasonPhrase(),
+						HttpStatus.OK.value()),
+				HttpStatus.OK);
+	}
 	@GetMapping("/{id}")
 	public ResponseEntity<APIResponse> getCourseById(@PathVariable("id") long id){
 		Course course = courseService.getById(id);

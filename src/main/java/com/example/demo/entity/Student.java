@@ -12,10 +12,12 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Student {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotBlank(message = "firstName is required")
 	private String firstName;
@@ -29,6 +31,7 @@ public class Student {
 	@JoinTable(name = "student_course",
 				joinColumns = @JoinColumn(name="student_id"),
 				inverseJoinColumns = @JoinColumn(name="course_id"))	
+ 
 	private List<Course> courses;
 
 	
@@ -86,6 +89,8 @@ public class Student {
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
+
+	 
 	
 	
 	

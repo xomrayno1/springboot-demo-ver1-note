@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Course {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotBlank(message = "name is required")
 	@Size(min = 2 , max = 20 , message = "field size 2 to 20")
@@ -34,6 +34,14 @@ public class Course {
 
 	public Course() {
 		super();
+	}
+
+
+	public Course(long id,
+			@NotBlank(message = "name is required") @Size(min = 2, max = 20, message = "field size 2 to 20") String name) {
+		super();
+		this.id = id;
+		this.name = name;
 	}
 
 

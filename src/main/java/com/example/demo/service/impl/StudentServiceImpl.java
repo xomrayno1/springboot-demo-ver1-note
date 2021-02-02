@@ -42,7 +42,25 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public Student getById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return studentRepo.findById(id).orElse(null);
+	}
+
+	@Override
+	public Student getOne(long id) {
+		// TODO Auto-generated method stub
+		return studentRepo.getOne(id);
+	}
+
+	@Override
+	public List<Student> searchByFirstNameAndLastName(String lastName, String firstName) {
+		// TODO Auto-generated method stub
+		return studentRepo.findBySearchFirstNameAndLastName(firstName, lastName);
+	}
+
+	@Override
+	public List<Student> findBySearchName(String name) {
+		// TODO Auto-generated method stub
+		return studentRepo.findBySearchName(name);
 	}
 
 }

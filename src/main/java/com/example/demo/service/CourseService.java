@@ -12,4 +12,5 @@ public interface CourseService {
 	public List<Course> getAll();
 	public Course getById(long id);
 	public List<Course> getByStudent(Student student);
+	public List<Course> searchByName(String name);
 }

@@ -51,4 +51,10 @@ public class CourseServiceImpl  implements CourseService{
 		return courseRepo.findByStudents(student);
 	}
 
+	@Override
+	public List<Course> searchByName(String name) {
+		// TODO Auto-generated method stub
+		return courseRepo.findByNameContainingAllIgnoreCase(name);
+	}
+
 }
